@@ -1,5 +1,5 @@
 """
-URL configuration for stupjt01 project.
+URL configuration for stupjt02 project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/6.0/topics/http/urls/
@@ -19,6 +19,5 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # url을 student 앱으로 연결
     path('student/', include('student.urls')),
 ]
