@@ -14,6 +14,7 @@
 # 프로젝트에 가서 setting.py 에서 INSTALLED_APPS에 앱 이름 추가 후
 # LANGUAGE_CODE = 'ko-kr'
 # TIME_ZONE = 'Asia/Seoul'
+# 상단에 import os 추가
 # # 정적 파일 위치 지정 - 정적파일 종류 : css, js, image 
 # STATIC_URL = 'static/'
 # STATICFILES_DIRS = [
@@ -58,6 +59,11 @@
 # urlpatterns = [
 #     path('', views.index, name= 'index'),
 # ]
+
+# views.py 에서 
+# def write(request):
+#     return render(request, 'index.html')
+# 입력
 
 ### 10. templates 폴더 생성 및 작성----------------------------------------------------------------
 # home 폴더에 templates 폴더 생성 후 그 안에 index.html 파일 생성
