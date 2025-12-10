@@ -1,6 +1,6 @@
 from django.db import models
 
-# 테이블을 생성하면 항상 id - AutoField 가 기본키로 생성된다.
+# 테이블을 생성하면 항상 id - AutoField 생성이 됨.
 # 테이블명 student_student 생성 됨.
 class Student(models.Model):
     sno = models.AutoField(primary_key=True)
@@ -8,7 +8,9 @@ class Student(models.Model):
     age = models.IntegerField(default=1)
     grade = models.IntegerField(default=1)
     gender = models.CharField(max_length=10)
-    hobby = models.CharField(max_length=100, default='게임')
+    hobby = models.CharField(max_length=100,default='게임')
     
     def __str__(self):
-        return f"{self.sno}, {self.name}, {self.age}, {self.grade}, {self.gender}"
+        return f"{self.sno},{self.name},{self.age},{self.grade},{self.gender}"
+    
+    

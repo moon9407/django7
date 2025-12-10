@@ -5,20 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>학생리스트</title>
     <style>
-        h2{text-align: center;}
-        table{margin: 0 auto;}
-        table,th,td{border:1px solid black; border-collapse: collapse;}
-        th,td{width: 150px; height: 40px; text-align: center;}
-        #btn{width: 800px; height: 50px; margin: 30px auto; border: none;}
-        .d01{width: 200px; height: 50px; text-align: center;
-            border: 1px solid black; margin: 0 auto; line-height: 50px;
-            background-color: #eee 
+        h2{text-align:center;}
+        table {margin:0 auto;}
+        table,th,td{border:1px solid black; border-collapse:collapse;}
+        th,td{width:150px; height:40px; text-align:center;}
+        #btn{width:800px; height:50px; margin:30px auto; border:none;}
+        .d01{width:200px; height:50px; text-align:center;
+            border:1px solid black; margin: 0 auto; line-height:50px;
+            background:#eee;
         }
-        a{text-decoration: none;}
+        a{text-decoration:none; }
     </style>
 </head>
 <body>
-    {% comment %}디장고 html 주석{% endcomment %}
+</tr> 
+    <!-- html 주석 -->
+    {% comment %} django html 주석  {% endcomment %}
     <h2>학생리스트</h2>
     <table>
         <tr>
@@ -27,13 +29,12 @@
             <th>나이</th>
             <th>학년</th>
             <th>성별</th>
-        </tr>
         {% if list %}
             {% for s in list %}
             <tr>
                 <td>{{s.sno}}</td>
                 <td>
-                    <a href='{% url "student:view" s.sno %}'> {{s.name}} </a>  {% comment %} django에만 가능한 방식 {% endcomment %}
+                    <a href='{% url "student:view" s.sno %}'> {{s.name}} </a>
                 </td>
                 <td>{{s.age}}</td>
                 <td>{{s.grade}}</td>
@@ -41,13 +42,13 @@
             </tr>
             {% endfor %}
         {% else %}
-        <tr>
-            <td colspan='5'>데이터가 존재하지 않습니다.</td>
-        </tr>
+            <tr>
+                <td colspan='5'>데이터가 존재하지 않습니다.</td>
+            </tr>
         {% endif %}
     </table>
     <div id="btn">
-        <div class='d01'><a href= '/student/write'>글쓰기</a></div>
+        <div class='d01'><a href='/student/write'>글쓰기</a></div>
     </div>
 </body>
 </html>

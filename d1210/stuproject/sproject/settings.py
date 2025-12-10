@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-n=&-88=hre(4@(ba%l3dggo)(8y4#j)-=6bz_*r%_u&lh4j=2j'
+SECRET_KEY = 'django-insecure-is^%lmx@51^czjzi+$a@hcbhps(b)9d53^jj54%qebgafq*$ix'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -17,8 +17,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
-
+# 앱 등록
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -26,7 +25,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'home','student','stuscore',
+    'home',
+    'student',
+    'stuscore',
 ]
 
 MIDDLEWARE = [
@@ -101,13 +102,8 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/6.0/howto/static-files/
-
-# 정적파일 위치 - css ,js, img
+# 정적파일 설정 (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-    
+    os.path.join(BASE_DIR,'static')
 ]
-
