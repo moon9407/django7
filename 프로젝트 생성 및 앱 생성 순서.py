@@ -200,3 +200,12 @@
 ## {% csrf_token %} : 보안토큰으로 해킹방지용
 ## {% url "student:write" %} : 상대경로
 ## /student/list : 절대경로
+
+#===================================================================================================
+# 링크 방식
+# 1) 앱이름 url방식
+# {% url "student:view" s.sno s.name %}
+# 2) rest api url방식
+# /student/{{s.sno}}/view/
+# 3) 파라미터 방식
+# /student/view?sno={{s.sno}}&name={{s.name}}

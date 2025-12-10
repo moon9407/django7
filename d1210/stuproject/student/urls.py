@@ -4,9 +4,8 @@ from . import views
 
 app_name = 'student'
 urlpatterns = [
-    
     path('list/', views.list, name='list'),
     path('write/', views.write, name='write'),
-    path('view/', views.view, name='view'),
+    path('view/<int:sno>/', views.view, name='view'),
     path('delete/', views.delete, name='delete'),
 ]
