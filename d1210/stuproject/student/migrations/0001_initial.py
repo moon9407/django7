@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('sno', models.AutoField(primary_key=True, serialize=False)),
                 ('name', models.CharField(max_length=100)),
-                ('age', models.IntegerField(default=0)),
+                ('age', models.IntegerField(default=1)),
                 ('grade', models.IntegerField(default=1)),
                 ('gender', models.CharField(max_length=10)),
             ],

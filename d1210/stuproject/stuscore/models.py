@@ -10,4 +10,5 @@ class Stuscore(models.Model):
     avg = models.FloatField(default=0)
     
     def __str__(self):
-        return f"{self.sno},{self.name},{self.total}"
+        return f"{self.sno},{self.name},{self.kor},{self.eng},{self.math},{self.total},{self.avg}"
+    
