@@ -209,3 +209,4 @@
 # /student/{{s.sno}}/view/
 # 3) 파라미터 방식
 # /student/view?sno={{s.sno}}&name={{s.name}}
+
