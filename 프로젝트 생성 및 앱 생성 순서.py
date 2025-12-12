@@ -18,7 +18,7 @@
 # 프로젝트에 가서 setting.py 에서 INSTALLED_APPS에 앱 이름 추가 후
 # LANGUAGE_CODE = 'ko-kr'
 # TIME_ZONE = 'Asia/Seoul'
-# 상단에 import os 추가
+## 상단에 import os 추가
 # # 정적 파일 위치 지정 - 정적파일 종류 : css, js, image 
 # STATIC_URL = 'static/'
 # STATICFILES_DIRS = [
@@ -114,8 +114,8 @@
 # - 패스워드 사용여부 확인[Y/N] : y 입력 후 엔터
 
 ###  생성된 db확인 방법과 롤백 방법---------------------------------------
-# 터미널 창에 python manage.py showmigrations : 생성된 db확인 방법
-# python manage.py migrate <app_name> zero : 롤백
+## 터미널 창에 python manage.py showmigrations : 생성된 db확인 방법
+## python manage.py migrate <app_name> zero : 롤백
 #=================================================================================================
 ###  db 명령어
 ## python manage.py shell 로 db 접속
@@ -202,11 +202,35 @@
 ## /student/list : 절대경로
 
 #===================================================================================================
-# 링크 방식
+### 링크 방식
 # 1) 앱이름 url방식
 # {% url "student:view" s.sno s.name %}
 # 2) rest api url방식
 # /student/{{s.sno}}/view/
 # 3) 파라미터 방식
 # /student/view?sno={{s.sno}}&name={{s.name}}
+
+#===================================================================================================
+### 쿠키 사용법
+# 쿠키 검색
+# request.COOKIES: 모두 읽어오기
+# request.COOKIES.get('') : 1개 읽어오기
+# request.COOKIES.get('','') : 1개 읽어오기, 없을때 빈값 돌려줌
+
+# 쿠키 저장
+# max_age : 유지시간    60*60*24*365      초*분*시간*일
+# response.set_cookie('쿠키이름', '쿠키값', max_age=유지시간)   # 유지시간 지정안하면 브라우저 종료 시 삭제 
+
+# 쿠키 삭제
+# response.delete_cookie('쿠키이름')
+
+#=====================================================================================================
+### 세션 사용법
+## 세션 읽어오기
+# request.session.session_id
+## 세션 저장
+# request.session['session_id'] = 'aaa'
+## 세션 삭제
+# del request.session['session_id'] # 1개 삭제
+# request.session.clear()  # 전체삭제
 
