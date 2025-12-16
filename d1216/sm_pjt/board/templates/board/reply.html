@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VLAST Shop - 답글달기</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      color: #1a1a1a;
+    }
+
+    /* Header */
+    .header {
+      width: 100%;
+      height: 60px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0 40px;
+      box-sizing: border-box;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .top-menu {
+      display: flex;
+      gap: 15px;
+      font-size: 13px;
+      color: #636363;
+      margin-right: 20px;
+    }
+    .top-menu a {
+      text-decoration: none;
+      color: #636363;
+    }
+    .top-menu a:hover {
+      color: #035fe0;
+    }
+
+    .write-container {
+      max-width: 800px;
+      margin: 80px auto;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+    .write-title {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .parent-info {
+      background: #f9f9f9;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 4px;
+      border-left: 4px solid #035fe0;
+    }
+
+    .parent-info h4 {
+      margin: 0 0 10px 0;
+      color: #035fe0;
+    }
+
+    .parent-info p {
+      margin: 5px 0;
+      font-size: 14px;
+      color: #666;
+    }
+
+    form.write-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .write-form input[type="text"],
+    .write-form textarea {
+      padding: 10px;
+      font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .write-form textarea {
+      resize: vertical;
+      min-height: 200px;
+    }
+
+    .write-buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 15px;
+    }
+
+    .write-buttons button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      color: white;
+      background-color: #035fe0;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .write-buttons button:hover {
+      background-color: #0046b3;
+    }
+
+    .write-buttons .cancel {
+      background-color: #6c757d;
+    }
+
+    .write-buttons .cancel:hover {
+      background-color: #5a6268;
+    }
+
+    footer {
+      border-top: 1px solid #ccc;
+      padding: 30px;
+      text-align: center;
+      font-size: 13px;
+      color: #A0A0A0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="top-menu">
+      <a href="#">회원가입</a> |
+      <a href="#">로그인</a> |
+      <a href="#">주문조회</a> |
+      <a href="#">최근본상품</a>
+    </div>
+  </div>
+
+  <!-- 답글달기 폼 -->
+  <div class="write-container">
+    <div class="write-title">답글 작성</div>
+    
+    <!-- 원글 정보 표시 -->
+    <div class="parent-info">
+      <h4>📌 원글 정보</h4>
+      <p><strong>제목:</strong> {{board.btitle}}</p>
+      <p><strong>작성자:</strong> {{board.member.name}}</p>
+      <p><strong>작성일:</strong> {{board.bdate|date:"Y-m-d H:i"}}</p>
+    </div>
+
+    <form class="write-form" name='frm' action='/board/reply/{{board.bno}}/' method='post' enctype='multipart/form-data'>
+      {% csrf_token %}
+      <input type="text" name='id' value='{{request.session.session_name}}' disabled />
+      <input type="text" name='btitle' id="title" placeholder="답글 제목 (Re: {{board.btitle}})" maxlength="100" value="Re: {{board.btitle}}" required />
+      <textarea name='bcontent' id="content" placeholder="답글 내용을 입력하세요." maxlength="2000" required></textarea>
+      
+      <input type="file" name='bfile' onchange='readURL(this);' />
+      <img id='preview' style='width:100px; display:none;'>
+      
+      <div class="write-buttons">
+        <button type="submit">답글 등록</button>
+        <button type="button" class="cancel" onclick="location.href='/board/view/{{board.bno}}/'">취소</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    Copyright © VLAST Shop. All rights reserved.
+  </footer>
+
+  <script>
+    // 이미지 업로드시 이미지 미리보기 함수
+    function readURL(input){
+        // 파일첨부가 있으면
+        if(input.files && input.files[0]){
+            var reader = new FileReader();
+            reader.onload = function(e){
+                document.getElementById('preview').src = e.target.result;
+                document.getElementById('preview').style.display = 'block';
+            };
+            reader.readAsDataURL(input.files[0]);
+        }else{
+            // 없을 경우 빈공백 처리
+            document.getElementById('preview').src = '';
+            document.getElementById('preview').style.display = 'none';
+        }
+    }
+  </script>
+</body>
+</html>

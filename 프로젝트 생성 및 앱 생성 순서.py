@@ -234,3 +234,18 @@
 # del request.session['session_id'] # 1개 삭제
 # request.session.clear()  # 전체삭제
 
+#====================================================================================================
+# 파일 업로드 설정 방법
+# setting.py 에서
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+# 추가 후 write.html 에서 form 태그에 enctype="multipart/form-data" 추가
+
+# 프로젝트 urls.py 에서
+# 상단
+# from django.conf import settings
+# from django.conf.urls.static import static
+
+# 하단
+# urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT )
+# 추가  
