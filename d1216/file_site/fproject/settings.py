@@ -111,4 +111,4 @@ STATICFILES_DIRS = [
 # url정보가 /media 로 들어오면 media폴더로 연결
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
-# MEDIA_ROOT = r'C:\fileUpload' # 로컬경로로 지정 가능
+# MEDIA_ROOT = r'd:/fileUpload' # 로컬경로저장

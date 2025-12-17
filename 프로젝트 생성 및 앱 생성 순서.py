@@ -249,3 +249,8 @@
 # 하단
 # urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT )
 # 추가  
+# form 에 
+# enctype='multipart/form-data' 
+# 추가
+
+
