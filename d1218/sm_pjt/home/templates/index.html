@@ -1,11 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>메인페이지</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block css-block %}
+<link rel='stylesheet' href='/static/css/login.css'>
+{% endblock css-block %}
+  {% block title-block %}
+  <title>메인페이지 | VLAST Shop</title>
+  {% endblock title-block %}
+
+{% block body-block %}
+
     <h2>메인페이지</h2>
     {% if not request.session.session_id %}
         <ul>
@@ -22,6 +24,4 @@
             <li><a href='/admin/'>admin관리자</a></li>
         </ul>
     {% endif %}
-    
-</body>
-</html>
+{% endblock body-block %}

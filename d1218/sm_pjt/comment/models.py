@@ -10,5 +10,5 @@ class Comment(models.Model):
     ccontent = models.TextField(blank=True)
     cdate = models.DateTimeField(auto_now=True)
     
-    def __str__ (self):
-        return f'{self.cno},{self.board},{self.member},{self.cpw},{self.ccontent},{self.cdate}'
+    def __str__(self):
+        return f'{self.cno},{self.board.bno},{self.member.id},{self.cpw},{self.ccontent},{self.cdate}'
