@@ -36,7 +36,12 @@
             <tr>
               <td>{{b.bno}}</td>
               <td class="title">
+                {% if not search %}
                 <a href="/board/view/{{b.bno}}/">
+                {% else %}
+                  <a href="/board/view/{{b.bno}}/?search={{search}}">
+                {% endif %}
+
                   {% for i in ''|rjust:b.bindent %}
                   <img src='/static/images/icon_reply.292031fe.png' style='width:10px;margin-left:2px;' >
                   {% endfor %}
@@ -66,8 +71,8 @@
         <div class="pagination">
             <!-- 처음페이지, 이전페이지 버튼 -->
             {% if list.has_previous  %}
-              <a href="/board/list/?page=1">&laquo;</a>
-              <a href="/board/list/?page={{list.previous_page_number}}">&lt;</a>
+              <a href="/board/list/?page=1&search={{search}}">&laquo;</a>
+              <a href="/board/list/?page={{list.previous_page_number}}&search={{search}}">&lt;</a>
             {% else %}
               <a>&laquo;</a>
               <a>&lt;</a>
@@ -78,7 +83,7 @@
                   {% if p == list.number %}
                       <a class="active">{{p}}</a>
                   {% else %}
-                      <a href="/board/list/?page={{p}}">{{p}}</a>
+                      <a href="/board/list/?page={{p}}&search={{search}}">{{p}}</a>
                   {% endif %}
                {% endif %}
             
@@ -93,16 +98,23 @@
             
             <!-- 다음페이지, 마지막페이지 -->
             {% if list.has_next  %}
-              <a href="/board/list/?page={{list.next_page_number}}">&gt;</a>
-              <a href="/board/list/?page={{list.paginator.num_pages}}">&raquo;</a>
+              <a href="/board/list/?page={{list.next_page_number}}&search={{search}}">&gt;</a>
+              <a href="/board/list/?page={{list.paginator.num_pages}}&search={{search}}">&raquo;</a>
             {% else %}
               <a>&gt;</a>
               <a>&raquo;</a>
             {% endif %}
         </div>
+        <script>
+          function searchBtn(){
+              alert('검색어를 입력하세요');
+              frm.submit();
+            }
+        </script>
         <div class="search-box">
-            <input type="text" placeholder="검색어 입력">
-            <button>검색</button>
+          <form action="/board/list/" name='frm' method="get">
+            <input type="text" name='search' placeholder="검색어 입력" value='{{search}}'>
+            <button type='button' onclick='searchBtn()'>검색</button>
         </div>
     </div>
     

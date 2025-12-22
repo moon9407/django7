@@ -4,10 +4,19 @@ from comment.models import Comment
 from member.models import Member
 from django.db.models import F,Q
 from django.core.paginator import Paginator
+import requests
+import json
+from . import func_api
 
 # 차트 그리기
 def chart(request):
     return render(request,'board/chart.html')
+
+# 공공데이터api 
+def list2(request):
+    public_key = func_api.public_api()
+    context = {'result':'성공'}
+    return render(request,'board/list2.html')
 
 # 게시판 답글달기
 def reply(request,bno):
@@ -94,15 +103,27 @@ def view2(request,bno):
 
 # 게시판 리스트
 def list(request):
-    # 게시글 모두 가져오기
-    qs = Board.objects.all().order_by('-bgroup','bstep')
-    # 하단 넘버링 (qs,10) -> 1페이지 10개씩
-    paginator = Paginator(qs,10)  # 101 -> 11
-    # 현재페이지 넘김.
+    search = request.GET.get('search','')
     page = int(request.GET.get('page',1))
-    list_qs = paginator.get_page(page) # 1page -> 게시글 10개를 전달
+    if search == '':
+        # 게시글 모두 가져오기
+        qs = Board.objects.all().order_by('-bgroup','bstep')
+        # 하단 넘버링 (qs,10) -> 1페이지 10개씩
+        paginator = Paginator(qs,10)  # 101 -> 11
+        # 현재페이지 넘김.
+        list_qs = paginator.get_page(page) # 1page -> 게시글 10개를 전달
+    else:
+        qs = Board.objects.filter(btitle__icontains=search)
+        # and 조건
+        # qs = Board.objects.filter(bitle__icontains='답글',bcontent__icontains='답글')
+        # or 조건
+        # qs = Board.objects.filter(Q(btitle__icontains='답글')|Q(bcontent__icontains='답글'))
+        # 하단 넘버링 (qs,10) -> 1페이지 10개씩
+        paginator = Paginator(qs,10)  # 101 -> 11
+        # 현재페이지 넘김.
+        list_qs = paginator.get_page(page) # 1page -> 게시글 10개를 전달
     
-    context = {'list':list_qs,'page':page}
+    context = {'list':list_qs,'page':page,'search':search}
     return render(request,'board/list.html',context)
 
 # 게시판 글쓰기
