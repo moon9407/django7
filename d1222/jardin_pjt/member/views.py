@@ -43,3 +43,24 @@ def idCheck(request):
     #----------------
     context = {'result':result}
     return JsonResponse(context)
+
+# json 리턴 : user 전체리스트
+def userAll(request):
+    # db확인
+    print('id:',request.GET.get('id',''))
+    print('name:',request.GET.get('name',''))
+    qs = Member.objects.all()
+    l_qs = list(qs.values())
+    # print("l_qs 데이터 형태 : ",l_qs)
+    context = {'arr':l_qs}
+    return JsonResponse(context)
+
+# json 리턴 : user 추가
+def userInsert(request):
+    # db확인
+    request.POST.GET()
+    qs = Member.objects.all()
+    l_qs = list(qs.values())
+    print("l_qs 데이터 형태 : ",l_qs)
+    context = {'arr':l_qs}
+    return JsonResponse(context)

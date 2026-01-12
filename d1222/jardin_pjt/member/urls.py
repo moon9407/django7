@@ -10,6 +10,7 @@ urlpatterns = [
     
     # JSON 리턴 : id가 존재하는지 체크
     path('idCheck/', views.idCheck, name='idCheck'),
+    path('userAll/', views.userAll, name='userAll'),
     
 ]
 
