@@ -7,10 +7,10 @@
 <meta name="description" content="JARDIN SHOP" />
 <meta name="keywords" content="JARDIN SHOP" />
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scaleable=no" />
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/static/css/reset.css?v=Y" />
 <link rel="stylesheet" type="text/css" href="/static/css/layout.css?v=Y" />
 <link rel="stylesheet" type="text/css" href="/static/css/content.css?v=Y" />
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="/static/js/top_navi.js"></script>
 <script type="text/javascript" src="/static/js/left_navi.js"></script>
 <script type="text/javascript" src="/static/js/main.js"></script>
@@ -258,36 +258,36 @@ $(document).ready(function() {
 									<td>김슬기</td>
 								</tr>
 								<script>
-                                    function idChkBtn(){
-                                        alert("서버에서 아이디가 있는지 확인합니다.");
-                                        let id = document.getElementById('id').value;
-                                        $.ajax({
-                                            url:'/member/idCheck/',
-                                            type:'get',
-                                            dataType:'json',
-                                            data:{'id':id},
-                                            success:function(data){
-                                                alert('성공');
-                                                if(data.result == '사용가능'){
-                                                    document.getElementById('id_check').innerHTML='<span class="mvalign black">* 아이디 사용가능</span>';
-                                                }else{
-                                                    document.getElementById('id_check').innerHTML='<span class="mvalign orange">* 아이디가 존재합니다.</span>';
-                                                }
-                                            },
-                                            error:function(){
-                                                alert('실패');
-                                            }
-                                        });//ajax
-                                    }//idChkBtn
-                                </script>
+									function idChkBtn(){
+										alert("서버에서 아이디가 있는지 확인합니다.");
+										let id = document.getElementById('id').value;
+										$.ajax({
+											url:'/member/idCheck/',
+											type:'get',
+											dataType:'json',
+											data:{'id':id},
+											success:function(data){
+												alert('성공');
+												if(data.result == '사용가능'){
+													document.getElementById('id_check').innerHTML = '<span class="mvalign black">* 아이디 사용가능</span>';
+												}else{
+													document.getElementById('id_check').innerHTML = '<span class="mvalign orange">* 아이디가 존재합니다.</span>';
+												}
+											},
+											error:function(){
+												alert('실패');
+											}
+
+										});//ajax
+									}//idChkBtn
+								</script>
 								<tr>
 									<th scope="row"><span>아이디 *</span></th>
 									<td>
 										<ul class="pta">
-											<li class="r10"><input type="text" class="w134" name='id' id = 'id' /></li>
+											<li class="r10"><input type="text" class="w134" name='id' id='id' /></li>
 											<li>
 												<a class="nbtnMini" onclick='idChkBtn()'>중복확인</a>
-												
 											</li>
 											<li class="pt5">
 												<span id='id_check'>
